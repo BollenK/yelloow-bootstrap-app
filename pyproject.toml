@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "yelloowappbootstrap"
+version = "0.1.0"
+description = "Bootstrapped version of the yelloow app"
+authors = ["Kasper <info@kbollen-development.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+structlog = "^22.3.0"
+mysql = "^0.0.3"
+mysql-connector-python = "^8.0.32"
+yelloow-models = {path = "submodules/yelloow_models"}
+yelloow-adapters = {path = "submodules/yelloow-adapters"}
+
+
+[tool.poetry.group.dev.dependencies]
+alembic = "^1.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

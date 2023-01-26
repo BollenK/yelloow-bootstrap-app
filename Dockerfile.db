@@ -1,0 +1,31 @@
+FROM --platform=linux/x86_64 mysql:8.0.30-debian
+
+ENV MYSQL_DATABASE=yelloow \
+    POETRY_VERSION=1.1.12
+# Install python/pip
+# ENV PYTHONUNBUFFERED=1
+# RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+# RUN python3 -m ensurepip
+# RUN pip3 install --no-cache --upgrade pip poetry==${POETRY_VERSION} setuptools
+RUN apt-get update
+RUN apt-get install --assume-yes --no-install-recommends python3-pip
+RUN apt-get install -y curl git
+RUN pip install --upgrade pip poetry
+
+WORKDIR /code
+
+# Install Python dependencies.
+COPY ./pyproject.toml ./
+
+
+RUN poetry install
+
+# Only now copy the code into the container. Everything before this will be cached
+# even with code changes.
+COPY . .
+RUN poetry install
+
+
+RUN useradd -m yelloow_user && chown -R yelloow_user /code
+
+USER yelloow_user

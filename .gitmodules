@@ -1,0 +1,6 @@
+[submodule "submodules/yelloow_models"]
+	path = submodules/yelloow_models
+	url = https://github.com/BollenK/yelloowmodels.git
+[submodule "submodules/yelloow-adapters"]
+	path = submodules/yelloow-adapters
+	url = https://github.com/BollenK/yelloow-adapters.git
